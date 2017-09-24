@@ -1,0 +1,78 @@
+# this is an example of the Target API
+# as a demonstration of an API spec in YAML
+swagger: '2.0'
+info:
+  title: Target API
+  description: myRetail RESTful service
+  version: "1.0.0"
+
+schemes:
+  - http
+produces:
+  - application/json
+  
+paths:
+  /products/{id}:
+    get:
+      summary: Retrieves the product details by id.
+      description: |
+        GET request that retrieves the product and its price details by id. The response delivers the 
+        product data in json format. 
+      parameters:
+        - name: id
+          in: path
+          description: Product id
+          required: true
+          type: number
+          format: int
+      responses:
+        200:
+          description: Shows product details
+          schema:
+            $ref: '#/definitions/Product'
+        404:
+          description: Error status. No product detail found corresponding to id
+    put:
+      summary: Updates the product price.
+      description: |
+       PUT request updates the product price value based on product id.
+      parameters:
+        - name: id
+          in: path
+          description: Product id
+          type: number
+          required: true
+          format: int
+        - name: name
+          in: body
+          description: Product name
+          schema:
+            $ref: '#/definitions/Product'
+      responses:
+        204:
+          description: Updates the price of product
+        400:
+          description: Product id mismatch
+      
+definitions:
+  Product:
+    type: object
+    properties:
+      id:
+        type: number
+        format: int 
+        description: Product id number.
+      name:
+        type: string
+        description: Display title of product.
+      currency_price:
+        type: object
+        properties:
+          currency_code:
+           type: string 
+           description: Currency code of product
+          value:
+           type: number
+           format: double
+           description: Price of product
+     

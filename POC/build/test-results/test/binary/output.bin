@@ -1,0 +1,36 @@
+Ž13:17:41.489 [Test worker] DEBUG org.apache.http.impl.conn.BasicClientConnectionManager - Get connection for route {}->http://localhost:8080
+{13:17:41.507 [Test worker] DEBUG org.apache.http.impl.conn.DefaultClientConnectionOperator - Connecting to localhost:8080
+y13:17:41.527 [Test worker] DEBUG org.apache.http.client.protocol.RequestAddCookies - CookieSpec selected: ignoreCookies
+w13:17:41.528 [Test worker] DEBUG org.apache.http.client.protocol.RequestAuthCache - Auth cache not set in the context
+€13:17:41.528 [Test worker] DEBUG org.apache.http.client.protocol.RequestTargetAuthentication - Target auth state: UNCHALLENGED
+~13:17:41.529 [Test worker] DEBUG org.apache.http.client.protocol.RequestProxyAuthentication - Proxy auth state: UNCHALLENGED
+o13:17:41.529 [Test worker] DEBUG org.apache.http.impl.client.DefaultHttpClient - Attempt 1 to execute request
+€13:17:41.529 [Test worker] DEBUG org.apache.http.impl.conn.DefaultClientConnection - Sending request: GET /products/1 HTTP/1.1
+`13:17:41.530 [Test worker] DEBUG org.apache.http.wire -  >> "GET /products/1 HTTP/1.1[\r][\n]"
+z13:17:41.532 [Test worker] DEBUG org.apache.http.wire -  >> "Content-Type: application/json; charset=ISO-8859-1[\r][\n]"
+S13:17:41.533 [Test worker] DEBUG org.apache.http.wire -  >> "Accept: */*[\r][\n]"
+\13:17:41.533 [Test worker] DEBUG org.apache.http.wire -  >> "Host: localhost:8080[\r][\n]"
+^13:17:41.533 [Test worker] DEBUG org.apache.http.wire -  >> "Connection: Keep-Alive[\r][\n]"
+|13:17:41.533 [Test worker] DEBUG org.apache.http.wire -  >> "User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_121)[\r][\n]"
+e13:17:41.533 [Test worker] DEBUG org.apache.http.wire -  >> "Accept-Encoding: gzip,deflate[\r][\n]"
+H13:17:41.533 [Test worker] DEBUG org.apache.http.wire -  >> "[\r][\n]"
+X13:17:41.533 [Test worker] DEBUG org.apache.http.headers - >> GET /products/1 HTTP/1.1
+r13:17:41.533 [Test worker] DEBUG org.apache.http.headers - >> Content-Type: application/json; charset=ISO-8859-1
+K13:17:41.533 [Test worker] DEBUG org.apache.http.headers - >> Accept: */*
+T13:17:41.534 [Test worker] DEBUG org.apache.http.headers - >> Host: localhost:8080
+V13:17:41.534 [Test worker] DEBUG org.apache.http.headers - >> Connection: Keep-Alive
+t13:17:41.534 [Test worker] DEBUG org.apache.http.headers - >> User-Agent: Apache-HttpClient/4.5.2 (Java/1.8.0_121)
+]13:17:41.534 [Test worker] DEBUG org.apache.http.headers - >> Accept-Encoding: gzip,deflate
+U13:17:41.541 [Test worker] DEBUG org.apache.http.wire -  << "HTTP/1.1 200 [\r][\n]"
+t13:17:41.545 [Test worker] DEBUG org.apache.http.wire -  << "Content-Type: application/json;charset=UTF-8[\r][\n]"
+b13:17:41.545 [Test worker] DEBUG org.apache.http.wire -  << "Transfer-Encoding: chunked[\r][\n]"
+k13:17:41.545 [Test worker] DEBUG org.apache.http.wire -  << "Date: Sun, 19 Mar 2017 18:17:41 GMT[\r][\n]"
+H13:17:41.545 [Test worker] DEBUG org.apache.http.wire -  << "[\r][\n]"
+x13:17:41.546 [Test worker] DEBUG org.apache.http.impl.conn.DefaultClientConnection - Receiving response: HTTP/1.1 200 
+M13:17:41.546 [Test worker] DEBUG org.apache.http.headers - << HTTP/1.1 200 
+l13:17:41.546 [Test worker] DEBUG org.apache.http.headers - << Content-Type: application/json;charset=UTF-8
+Z13:17:41.546 [Test worker] DEBUG org.apache.http.headers - << Transfer-Encoding: chunked
+c13:17:41.547 [Test worker] DEBUG org.apache.http.headers - << Date: Sun, 19 Mar 2017 18:17:41 GMT
+|13:17:41.553 [Test worker] DEBUG org.apache.http.impl.client.DefaultHttpClient - Connection can be kept alive indefinitely
+¨13:17:41.593 [Test worker] DEBUG com.jayway.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder - Parsing response as: application/json;charset=UTF-8
+À13:17:41.593 [Test worker] DEBUG com.jayway.restassured.internal.RequestSpecificationImpl$RestAssuredHttpBuilder - Parsed data to instance of: class org.apache.http.conn.EofSensorInputStream
