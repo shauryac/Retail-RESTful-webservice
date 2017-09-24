@@ -12,3 +12,5 @@ The application performs:
       http request into a single response.
       
 (iv) PUT request to update the product price in data store.
+
+YAML API specification documentation :/src/resources/APIDoc.yml
