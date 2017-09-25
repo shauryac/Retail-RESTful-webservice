@@ -1,6 +1,6 @@
 # Retail-RESTful-webservice
 
-The goal is to create a proof of concept for a products API. The idea is to create a RESTful websevice  that can retrieve product and price details by ID. 
+The goal is to perform a proof of concept for a products API. The idea is to create a RESTful websevice  that can retrieve product and price details by ID. 
 The application performs:
 
 (i) GET request to retrieve product details. 
