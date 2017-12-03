@@ -8,11 +8,12 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan({"service","controller","repository","dao"})
-@EnableMongoRepositories(basePackages = {"repository"})
+@ComponentScan({"service","controller","dao","exceptions"})
+@EnableMongoRepositories(basePackages = {"dao"})
 public class DemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
 	}
+	
 }

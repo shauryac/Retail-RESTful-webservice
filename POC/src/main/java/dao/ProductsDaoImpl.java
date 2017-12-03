@@ -1,8 +1,11 @@
 package dao;
 
 import java.io.IOException;
-import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoOperations;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,16 +13,19 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import model.CurrencyPriceModel;
+import model.ProductModel;
+
 @Repository
 public class ProductsDaoImpl implements ProductsDao {
+	
+	@Autowired
+	private MongoOperations operations;
 
-	public HashMap<Integer,String> findProductIdAndName(int productId) {
+	public String findProductNameById(int productId) {
 
-		int id = 0;
 		String productName = null;
-		JsonNode itemNode = null;
-		JsonNode productDescription = null;
-		HashMap<Integer,String> map = new HashMap<Integer,String>();
+		
 		// Build URL
 		String url = "http://redsky.target.com/v1/pdp/tcin/" + productId
 				+ "?excludes=taxonomy,price,promotion,bulk_ship,rating_and_review_reviews,rating_and_review_statistics,question_answer_statistics";
@@ -27,22 +33,32 @@ public class ProductsDaoImpl implements ProductsDao {
 		RestTemplate restTemplate = new RestTemplate();
 		// Call service
 		String result = null;
-		result = restTemplate.getForObject(url.toString(), String.class);
+		result = restTemplate.getForObject(url, String.class);
 		ObjectMapper mapper = new ObjectMapper();
 		try {
 			JsonNode rootArray = mapper.readTree(result);
 			for (JsonNode root : rootArray) {
-				itemNode = root.path("item");
-				id = itemNode.path("tcin").asInt();
-				productDescription = itemNode.path("product_description");
+				JsonNode itemNode = root.path("item");
+				JsonNode productDescription = itemNode.path("product_description");
 				productName = productDescription.path("title").asText();
 			}
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} 
+		
+		return productName;
+	}
+
+	public void updatePrice(Integer productId, ProductModel model) {
+		Query query = new Query();
+		query.addCriteria(Criteria.where("productId").is(productId));
+
+		CurrencyPriceModel userTest = operations.findOne(query, CurrencyPriceModel.class);
+		if (userTest != null) {
+			userTest.setValue(model.getCurrencyPrice().getValue());	
+			operations.save(userTest);
 		}
-		map.put(id,productName);
-		return map;
 	}
 }

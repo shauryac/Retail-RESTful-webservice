@@ -1,15 +1,13 @@
 package service;
 
-import java.util.HashMap;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import dao.PriceRepository;
 import dao.ProductsDao;
+import exceptions.ProductNotFoundException;
 import model.CurrencyPriceModel;
 import model.ProductModel;
-import repository.PriceRepository;
-import repository.UpdateRepository;
 
 @Service
 public class ProductServiceImpl implements ProductService {
@@ -18,30 +16,30 @@ public class ProductServiceImpl implements ProductService {
 	private PriceRepository priceRepository;
 
 	@Autowired
-	private UpdateRepository updateRepository;
+	private ProductsDao productDao;
 
-	@Autowired
-	private ProductsDao productsname;
-
-	public ProductModel findProduct(int productId) {
+	public ProductModel findProduct(int productId) throws ProductNotFoundException  {
+		// get currency details from the database
 		CurrencyPriceModel currencyModel = priceRepository.findByProductId(productId);
 		
-		if (currencyModel != null) {
+		// if there is currency details for the product id
+		if (currencyModel != null) {	
+			
+			// get product name from redsky target api
+			String productName = productDao.findProductNameById(productId);
+			
 			ProductModel productModel = new ProductModel();
-			HashMap<Integer, String> map = productsname.findProductIdAndName(productId);
 			productModel.setCurrencyPrice(currencyModel);
-			if (map.containsKey(productId)) {
-				Object value = map.get(productId);
-				productModel.setId(String.valueOf(productId));
-				productModel.setTitle(value.toString());
-			}
+			productModel.setId(productId);
+			productModel.setName(productName);
 			return productModel;
 		}
-		return null;
-		
+		throw new ProductNotFoundException("Product not found with product id " + productId);
+
 	}
 
 	public void updatePrice(Integer productId, ProductModel model) {
-		updateRepository.updatePrice(productId, model);
+		// update currency details in the database 
+		productDao.updatePrice(productId, model);
 	}
 }

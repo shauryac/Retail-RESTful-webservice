@@ -4,27 +4,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class ProductModel {
 
+	
 	@JsonProperty("id")
-	String id;
+	int id;
 	
 	@JsonProperty("name")
-	String title;
+	String name;
 	
-	@JsonProperty("currency_price")
+	@JsonProperty("current_price")
 	CurrencyPriceModel currencyPrice;
 	
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public CurrencyPriceModel getCurrencyPrice() {
 		return currencyPrice;

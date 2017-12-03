@@ -1,8 +1,13 @@
 package dao;
 
-import java.util.HashMap;
+import model.ProductModel;
 
 public interface ProductsDao {
-	HashMap<Integer,String> findProductIdAndName(int productId);
+	
+	// find product name based on id from the redsky api
+	String findProductNameById(int productId);
+	
+	// update currency details in the database
+	void updatePrice(Integer productId, ProductModel model);
 
 }
